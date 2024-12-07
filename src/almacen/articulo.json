@@ -1,0 +1,67 @@
+[
+    {
+        "id": 1,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://th.bing.com/th/id/OIP.zUZKbZFm22m7E3KWkj8YkQHaLF?rs=1&pid=ImgDetMain"
+    },
+
+    {
+        "id": 2,
+        "name": "Producto 2",
+        "description": "Descripción del producto 2",
+        "price": 9.99,
+        "image": "https://imagessl0.casadellibro.com/a/l/t0/70/9788445000670.jpg"
+    },
+
+    {
+        "id": 3,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://th.bing.com/th/id/OIP.w5CC9XaJ1yY2Loie0KarRwHaLK?rs=1&pid=ImgDetMain"
+    },
+    {
+        "id": 4,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://es.naufragia.com/wp-content/uploads/2021/04/ins-668x1024.png"
+    },
+
+    {
+        "id": 5,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://i.pinimg.com/originals/ab/ec/d5/abecd51b79366c089872d1e88e6c7424.jpg"
+    },
+
+    {
+        "id": 6,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://th.bing.com/th/id/OIP.DNjlg7zpbdx_ZH_7VC68BwHaLV?rs=1&pid=ImgDetMain"
+    },
+
+    {
+        "id": 1,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://i.pinimg.com/originals/a6/02/22/a6022237a7e3631fb62ebb3e3ca4f804.jpg"
+    },
+
+    {
+        "id": 1,
+        "name": "Producto 1",
+        "description": "Descripción del producto 1",
+        "price": 10.99,
+        "image": "https://www.recreoviral.com/wp-content/uploads/2015/06/30-asombrosas-portadas-de-libros-28.jpg"
+    }
+
+
+
+]
