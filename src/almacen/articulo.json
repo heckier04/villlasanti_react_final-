@@ -1,67 +1,74 @@
 [
     {
         "id": 1,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
-        "price": 10.99,
+        "name": "El Señor de los Anillos: La Comunidad del Anillo",
+        "author": "J.R.R. Tolkien",
+        "description": "Adéntrate en el comienzo de una de las historias más épicas de la literatura fantástica. En La Comunidad del Anillo, el joven hobbit Frodo Bolsón recibe un misterioso anillo que guarda un poder inimaginable: el Anillo Único, capaz de someter a toda la Tierra Media bajo la oscuridad del malvado Sauron. Acompaña a Frodo y la Comunidad del Anillo —un grupo de valientes héroes conformado por hobbits, hombres, un mago, un elfo y un enano— en una peligrosa misión para destruir el Anillo y salvar su mundo del desastre. Una historia repleta de aventuras, amistad, batallas épicas y personajes inolvidables. Una obra maestra escrita por J.R.R. Tolkien que ha cautivado a millones de lectores en todo el mundo. ¡Perfecta para amantes de la fantasía y coleccionistas de grandes historias!",
+        "price": 60.59,
+        "category": "Fantasía",
         "image": "https://th.bing.com/th/id/OIP.zUZKbZFm22m7E3KWkj8YkQHaLF?rs=1&pid=ImgDetMain"
     },
-
     {
         "id": 2,
-        "name": "Producto 2",
-        "description": "Descripción del producto 2",
-        "price": 9.99,
+        "name": "El Señor de los Anillos: Las Dos Torres",
+        "author": "J.R.R. Tolkien",
+        "description": "La épica aventura continúa en Las Dos Torres, el segundo volumen de El Señor de los Anillos. La Comunidad del Anillo se ha disuelto, y sus miembros enfrentan desafíos separados. Frodo y Sam siguen su camino hacia Mordor, guiados por la enigmática criatura Gollum, mientras Aragorn, Legolas y Gimli buscan salvar a sus amigos y defender la Tierra Media del avance del ejército de Sauron. Entre batallas épicas, traiciones y alianzas inesperadas, este volumen mantiene la emoción y la tensión en cada página. Una obra esencial para los amantes de la fantasía.",
+        "price": 240.99,
+        "category": "Fantasía",
         "image": "https://imagessl0.casadellibro.com/a/l/t0/70/9788445000670.jpg"
     },
-
     {
         "id": 3,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
+        "name": "El Señor de los Anillos: El Retorno del Rey",
+        "author": "J.R.R. Tolkien",
+        "description": "El Retorno del Rey es el emocionante desenlace de la trilogía de El Señor de los Anillos. Mientras Frodo y Sam se acercan al Monte del Destino, soportando los últimos y más peligrosos tramos de su viaje, la batalla final por la Tierra Media se desata. Aragorn debe reclamar su destino como Rey de Gondor y unir a las fuerzas libres en una última lucha desesperada contra Sauron. Con un final épico y lleno de emoción, este libro culmina una de las historias más grandiosas jamás contadas.",
         "price": 10.99,
+        "category": "Fantasía",
         "image": "https://th.bing.com/th/id/OIP.w5CC9XaJ1yY2Loie0KarRwHaLK?rs=1&pid=ImgDetMain"
     },
     {
         "id": 4,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
-        "price": 10.99,
+        "name": "El Instituto",
+        "author": "Stephen King",
+        "description": "En mitad de la noche, en una casa de una tranquila calle residencial de Minneapolis, unos intrusos matan a los padres de Luke Ellis y lo meten en un coche negro. La operación solo dura dos minutos. Luke se despertará en El Instituto, en una habitación que se parece a la suya, pero sin ventanas. Fuera de su puerta hay otras puertas, detrás de las cuales se encuentran otros niños con talentos especiales (telequinesis y telepatía) que llegaron antes que él. Luke se entera de que los niños que pasen a la sección conocida como Desaparecidos nunca regresan.",
+        "price": 15.99,
+        "category": "Terror",
         "image": "https://es.naufragia.com/wp-content/uploads/2021/04/ins-668x1024.png"
     },
-
     {
         "id": 5,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
-        "price": 10.99,
+        "name": "El Bosque Negro",
+        "author": "Steve Hillard",
+        "description": "En la Alemania nazi, la búsqueda de una antigua reliquia mágica es la clave para la supervivencia. Un grupo de valientes aliados debe enfrentarse a los terrores del Bosque Negro y a las fuerzas oscuras que se alían con el Tercer Reich.",
+        "price": 12.99,
+        "category": "Fantasía",
         "image": "https://i.pinimg.com/originals/ab/ec/d5/abecd51b79366c089872d1e88e6c7424.jpg"
     },
-
     {
         "id": 6,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
-        "price": 10.99,
+        "name": "La Cúpula",
+        "author": "Stephen King",
+        "description": "Un misterioso campo de fuerza encapsula a la pequeña ciudad de Chester's Mill, aislándola del mundo exterior. Mientras las fuerzas militares, el gobierno y los medios de comunicación rodean la cúpula, los ciudadanos atrapados deben enfrentarse a los retos físicos y psicológicos que la situación les impone.",
+        "price": 19.99,
+        "category": "Ciencia Ficción",
         "image": "https://th.bing.com/th/id/OIP.DNjlg7zpbdx_ZH_7VC68BwHaLV?rs=1&pid=ImgDetMain"
     },
-
     {
-        "id": 1,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
-        "price": 10.99,
+        "id": 7,
+        "name": "Panteón",
+        "author": "Carlos Sisí",
+        "description": "En un mundo devastado por el Apocalipsis, los sobrevivientes se agrupan en torno a la figura del Panteón, un refugio fortificado donde la humanidad intenta resurgir y combatir a las criaturas que han tomado el control del planeta.",
+        "price": 14.99,
+        "category": "Fantasía",
         "image": "https://i.pinimg.com/originals/a6/02/22/a6022237a7e3631fb62ebb3e3ca4f804.jpg"
     },
-
     {
-        "id": 1,
-        "name": "Producto 1",
-        "description": "Descripción del producto 1",
-        "price": 10.99,
+        "id": 8,
+        "name": "The Sisters Brothers",
+        "author": "Patrick deWitt",
+        "description": "La historia de los hermanos Charlie y Eli Sisters, dos asesinos a sueldo que recorren el Salvaje Oeste en busca de su próxima misión. En su camino, se enfrentan a dilemas morales y a la brutalidad del mundo en el que viven.",
+        "price": 16.99,
+        "category": "Western",
         "image": "https://www.recreoviral.com/wp-content/uploads/2015/06/30-asombrosas-portadas-de-libros-28.jpg"
     }
-
-
-
 ]
