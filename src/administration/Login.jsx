@@ -1,51 +1,58 @@
-// Importaciones necesarias
 import React, { useState } from "react";
-import { useAuth } from "../hooks/useAuth"; // Hook para manejar autenticación.
-import { Navigate } from "react-router-dom"; // Navegación condicional.
+import { Navigate } from "react-router-dom";
+import { useAuth } from "../hooks/UseAuth";
 
 const Login = () => {
-  const { signIn, user } = useAuth(); // Función para iniciar sesión y usuario autenticado.
-  const [email, setEmail] = useState(""); // Estado para el correo electrónico.
-  const [password, setPassword] = useState(""); // Estado para la contraseña.
-  const [error, setError] = useState(null); // Estado para manejar errores.
+  const { signUp, signIn, user, loading, error } = useAuth();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isRegistering, setIsRegistering] = useState(false);
 
   const handleSubmit = async (event) => {
-    event.preventDefault(); // Prevenir el comportamiento predeterminado del formulario.
-    try {
-      await signIn(email, password); // Intentar iniciar sesión.
-    } catch (err) {
-      setError("Credenciales incorrectas. Intenta nuevamente."); // Manejar error de inicio de sesión.
+    event.preventDefault();
+    if (isRegistering) {
+      await signUp(email, password);
+    } else {
+      await signIn(email, password);
     }
   };
 
   if (user) {
-    // Redirige al panel de administración si el usuario está autenticado.
-    return <Navigate to="/admin" />;
+    if (user.role === "admin") return <Navigate to="/admin" />;
+    if (user.role === "user") return <Navigate to="/user" />;
   }
 
   return (
     <div className="login-container">
-      <h2 className="login-title">Iniciar Sesión</h2>
-      {error && <p className="error-message">{error}</p>} {/* Muestra mensaje de error si existe */}
-      <form onSubmit={handleSubmit} className="login-form">
+      <h2>{isRegistering ? "Registrarse" : "Iniciar Sesión"}</h2>
+      {error && <p className="error-message">{error}</p>}
+      <form onSubmit={handleSubmit}>
         <input
           type="email"
           placeholder="Email"
-          className="input-field"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+          autoComplete="email"
+          disabled={loading}
         />
         <input
           type="password"
           placeholder="Contraseña"
-          className="input-field"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
+          autoComplete={isRegistering ? "new-password" : "current-password"}
+          disabled={loading}
         />
-        <button type="submit" className="submit-button">
-          Iniciar Sesión
+        <button type="submit" disabled={loading}>
+          {loading ? "Cargando..." : isRegistering ? "Registrarse" : "Iniciar Sesión"}
         </button>
       </form>
+      <p>
+        {isRegistering ? "¿Ya tienes una cuenta?" : "¿No tienes una cuenta?"}{" "}
+        <button onClick={() => setIsRegistering(!isRegistering)} disabled={loading}>
+          {isRegistering ? "Inicia Sesión" : "Regístrate"}
+        </button>
+      </p>
     </div>
   );
 };

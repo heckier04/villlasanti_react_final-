@@ -15,7 +15,7 @@ const ItemListContainer = () => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const productosRef = collection(db, "productos"); // Referencia a la colección de productos
+        const productosRef = collection(db, "products"); // Referencia a la colección de productos
         // Si hay una categoría, se filtran los productos por categoría
         const q = categoria ? query(productosRef, where("categoria", "==", categoria)) : productosRef;
 
@@ -28,7 +28,7 @@ const ItemListContainer = () => {
         const categoriesFromData = [...new Set(productosData.map((item) => item.category))];
         setCategories(categoriesFromData); // Establece las categorías
 
-        setTitulo(categoria ? `Productos en ${categoria}` : "Productos"); // Establece el título
+        setTitulo(categoria ? `Productos en ${categoria}` : "Products"); // Establece el título
       } catch (error) {
         console.error("Error al cargar los productos: ", error);
       }

@@ -1,49 +1,75 @@
-// Importaciones necesarias
 import React, { useEffect, useState } from "react";
-import { useAuth } from "../hooks/useAuth"; // Hook para manejar autenticación.
-import { getProducts, addProduct, initializeProducts } from "../services/Products"; // Servicios relacionados con productos.
-import { uploadImage } from "../services/Storage"; // Servicio para subir imágenes.
-import { Navigate } from "react-router-dom"; // Navegación condicional.
-import { toast, ToastContainer } from 'react-toastify'; // Librería para notificaciones.
-import 'react-toastify/dist/ReactToastify.css'; // Estilos de notificaciones.
-import './admin.css'; // Estilos específicos del componente.
+import { useAuth } from "../hooks/UseAuth"; // Hook para manejar autenticación
+import { getProducts, addProduct, initializeProducts } from "../services/Products";
+import { uploadImage } from "../services/Storage";
+import { Navigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../services/FireBase"; // Configuración de Firestore
+import "./admin.css";
 
 const Admin = () => {
-  const { user, logOut } = useAuth(); // Datos del usuario autenticado y función para cerrar sesión.
-  const [newProduct, setNewProduct] = useState({ name: "", price: "", image: null }); // Estado para el nuevo producto.
-  const [products, setProducts] = useState([]); // Estado de la lista de productos existentes.
+  const { user, logOut } = useAuth();
+  const [newProduct, setNewProduct] = useState({ name: "", price: "", image: null });
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false); // Estado para manejar loaders
+  const [isAdmin, setIsAdmin] = useState(null); // Rol del usuario
 
   useEffect(() => {
-    // Función para cargar productos al inicio.
-    const fetchProducts = async () => {
-      await initializeProducts(); // Inicializa productos si es necesario.
-      const productsList = await getProducts(); // Obtiene los productos desde el servicio.
-      setProducts(productsList); // Actualiza el estado con la lista de productos.
+    const fetchUserRole = async () => {
+      if (user) {
+        try {
+          const userDoc = await getDoc(doc(db, "users", user.uid));
+          if (userDoc.exists() && userDoc.data().role === "admin") {
+            setIsAdmin(true);
+          } else {
+            setIsAdmin(false);
+          }
+        } catch (error) {
+          console.error("Error al obtener el rol del usuario:", error);
+          setIsAdmin(false);
+        }
+      }
     };
 
-    fetchProducts(); // Ejecuta la carga inicial de productos.
-  }, []); // Dependencia vacía, ejecuta solo al montar el componente.
+    const fetchProducts = async () => {
+      await initializeProducts();
+      const productsList = await getProducts();
+      setProducts(productsList);
+    };
+
+    fetchUserRole();
+    fetchProducts();
+  }, [user]);
 
   if (!user) {
-    // Redirige al login si el usuario no está autenticado.
     return <Navigate to="/login" />;
   }
 
+  if (isAdmin === false) {
+    return <Navigate to="/home" />;
+  }
+
   const handleAddProduct = async () => {
-    // Valida que se haya subido una imagen.
-    if (newProduct.image) {
-      try {
-        const imageUrl = await uploadImage(newProduct.image); // Sube la imagen.
-        await addProduct({ ...newProduct, image: imageUrl }); // Agrega el producto con la imagen.
-        const productsList = await getProducts(); // Actualiza la lista de productos.
-        setProducts(productsList);
-        setNewProduct({ name: "", price: "", image: null }); // Limpia el formulario.
-        toast.success("Producto añadido con éxito"); // Notificación de éxito.
-      } catch (error) {
-        toast.error("Hubo un error al agregar el producto."); // Notificación de error.
-      }
-    } else {
-      toast.error("Por favor, selecciona una imagen."); // Valida que haya imagen.
+    if (!newProduct.name || !newProduct.price || !newProduct.image) {
+      toast.error("Por favor, completa todos los campos.");
+      return;
+    }
+
+    setLoading(true);
+    try {
+      const imageUrl = await uploadImage(newProduct.image);
+      await addProduct({ ...newProduct, image: imageUrl });
+      const productsList = await getProducts();
+      setProducts(productsList);
+      setNewProduct({ name: "", price: "", image: null });
+      toast.success("Producto añadido con éxito");
+    } catch (error) {
+      console.error("Error al agregar producto:", error);
+      toast.error("Hubo un error al agregar el producto.");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,7 +89,7 @@ const Admin = () => {
           onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
         />
         <input
-          type="text"
+          type="number"
           placeholder="Precio"
           className="input-field"
           value={newProduct.price}
@@ -74,21 +100,33 @@ const Admin = () => {
           className="file-input"
           onChange={(e) => setNewProduct({ ...newProduct, image: e.target.files[0] })}
         />
-        <button onClick={handleAddProduct} className="add-product-button">
-          Agregar Producto
+        <button
+          onClick={handleAddProduct}
+          className="add-product-button"
+          disabled={loading}
+        >
+          {loading ? "Cargando..." : "Agregar Producto"}
         </button>
       </div>
 
       {/* Lista de productos */}
       <div className="product-list">
         <h3 className="list-title">Productos Existentes</h3>
-        <ul className="products">
-          {products.map((product) => (
-            <li key={product.id} className="product-item">
-              {product.name} - ${product.price}
-            </li>
-          ))}
-        </ul>
+        {products.length > 0 ? (
+          <ul className="products">
+            {products.map((product) => (
+              <li key={product.id} className="product-item">
+                <div className="product-details">
+                  <img src={product.image} alt={product.name} className="product-image" />
+                  <span>{product.name}</span>
+                  <span>${product.price}</span>
+                </div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="no-products">No hay productos disponibles.</p>
+        )}
       </div>
 
       {/* Contenedor para notificaciones */}
